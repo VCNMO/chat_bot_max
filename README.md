@@ -15,7 +15,7 @@
 
 ## Документы:
 
-грамота или диплом: название конкурса, организатор конкурса, уровень, дата проведения, результат.
+грамота или диплом: название конкурса, организатор конкурса, уровень (Муниципальный/Региональный уровень,  Федеральный уровень,  Международный уровень), дата проведения, результат (победитель, призур, участник).
 
 документ о повышении квалификации: название курса, организатор, дата выдачи, количество часов.
 
@@ -42,40 +42,23 @@
 
 ## База данных
 
-Файл `data/documents.sqlite3` (SQLite, WAL). Фото документа хранится прямо в БД как BLOB.
-Схема общая для v1 и v2.
+Файл `data/documents.sqlite3`. Фото документа хранится как файл.
 
-```sql
-CREATE TABLE users (
-    user_id      INTEGER PRIMARY KEY,
-    fio          TEXT,
-    state        TEXT,      -- new | menu | await_photo | fill
-    pending_kind TEXT,      -- competition | course
-    draft_id     INTEGER,   -- незаконченный документ
-    created_at   TEXT
-);
 
-CREATE TABLE documents (
-    id          INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id     INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
-    kind        TEXT,       -- competition | course
-    photo       BLOB,       -- сам снимок документа
-    photo_mime  TEXT,
-    title       TEXT,       -- конкурс или курс
-    organizer   TEXT,
-    level       TEXT,       -- только для конкурса
-    dates       TEXT,
-    year        INTEGER,
-    result      TEXT,       -- только для конкурса
-    hours       INTEGER,    -- только для КПК
-    completed   INTEGER,    -- 1 = анкета заполнена
-    created_at  TEXT
-);
 ```
-
-
-
-
-
-
-
+TABLE users 
+    user_id      INTEGER
+    fio          TEXT
+```
+```
+TABLE documents
+    id          INTEGER
+    user_id     INTEGER 
+    kind        TEXT       -- конкурс или курс
+    title       TEXT       
+    organizer   TEXT
+    level       TEXT       -- только для конкурса (Муниципальный/Региональный уровень,  Федеральный уровень,  Международный уровень)
+    dates       TEXT       -- дата проведения или выдачи
+    result      TEXT       -- только для конкурса (победитель, призур, участник)
+    hours       INTEGER    -- только для КПК
+```
