@@ -48,18 +48,19 @@
 
 ```
 TABLE users 
-    user_id      INTEGER
-    fio          TEXT
+    user_id             INTEGER
+    fio                 TEXT
 ```
 ```
 TABLE documents
-    id          INTEGER
-    user_id     INTEGER 
-    kind        TEXT       -- конкурс или курс
-    title       TEXT       
-    organizer   TEXT
-    level       TEXT       -- только для конкурса (Муниципальный/Региональный уровень,  Федеральный уровень,  Международный уровень)
-    dates       TEXT       -- дата проведения или выдачи
-    result      TEXT       -- только для конкурса (победитель, призер, участник)
-    hours       INTEGER    -- только для КПК
+    id                  INTEGER
+    user_id             INTEGER 
+    kind                TEXT       -- конкурс или курс
+    title               TEXT       
+    organizer           TEXT
+    level               TEXT       -- только для конкурса (Муниципальный/Региональный уровень,  Федеральный уровень,  Международный уровень)
+    dates               TEXT       -- дата проведения или выдачи
+    result              TEXT       -- только для конкурса (победитель, призер, участник)
+    hours               INTEGER    -- только для КПК
+    registration_number TEXT       -- для КПК
 ```
